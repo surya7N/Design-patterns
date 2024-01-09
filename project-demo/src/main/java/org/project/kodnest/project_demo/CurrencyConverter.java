@@ -26,7 +26,7 @@ public class CurrencyConverter
 		System.out.println("Enter amount to be converted :");
 		double amount=scan.nextDouble();
 		double convertedAmount =0;
-		try {
+		try { 
 			convertedAmount = convertCurrency(currencyToConvertFrom,currencyToBeConvertedTo,amount,apiKey,apiUrl);
 			System.out.println(amount + " " + currencyToConvertFrom + " equals to: " + convertedAmount + " " + currencyToBeConvertedTo+".");
 		} catch (Exception e) {
@@ -41,7 +41,7 @@ public class CurrencyConverter
 				.header("Accept", "application/json")
 				.asJson();
 
-		if (((kong.unirest.HttpResponse<JsonNode>) response).getStatus() == 200) {
+		if (((kong.unirest.HttpResponse<JsonNode>) response).getStatus() == 200) { //successful request 
 			JsonObject rates = JsonParser.parseString((response).getBody().toString()).getAsJsonObject().getAsJsonObject("rates");
 			double exchangeRate = rates.get(currencyToBeConvertedTo).getAsDouble();
 			return amount * exchangeRate;
